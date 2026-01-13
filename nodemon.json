@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": "ts",
+  "ignore": ["tests/**/*.ts", "dist/**/*"],
+  "exec": "NODE_OPTIONS=\"-r ts-node/register --no-warnings\" node src/index.ts"
+}

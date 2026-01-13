@@ -1,0 +1,8 @@
+[Event "Corrupted Game"]
+[Site "Test"]
+[Date "2025.01.09"]
+[White "Player One"]
+[Black "Player Two"]
+[Result "*"]
+
+1. e4 e5 2. invalid_move Nc6

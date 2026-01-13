@@ -1,0 +1,14 @@
+[Event "World Championship"]
+[Site "London"]
+[Date "2023.01.15"]
+[White "Magnus Carlsen"]
+[Black "Hikaru Nakamura"]
+[Result "1-0"]
+[WhiteElo "2862"]
+[BlackElo "2774"]
+[ECO "C50"]
+[Opening "Italian Game"]
+[TimeControl "300"]
+[Termination "Time forfeit"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d4 exd4 6. cxd4 Bb4+ 7. Bd2 Bxd2+ 8. Nbxd2 d5 9. exd5 Nxd5 10. Qb3 Nce7 11. O-O O-O 12. Rfe1 c6 13. Nbd4 Nxd4 14. Nxd4 Bf5 15. Re3 h6 16. h3 Qb6 17. Qxb6 axb6 18. a3 Rfe8 19. Rxe8+ Rxe8 20. Rc1 g6 21. Kg2 Kg7 22. Ne2 Ne7 23. Nc3 Ng6 24. b4 c5 25. Nxb5 Nf4+ 26. Kg1 Ne2+ 27. Kh2 cxd4 28. b5 d3 29. Rd1 d2 30. Rxd2 Nxd2 31. b6 Ra8 32. b7 Ne4 33. a4 f5 34. f3 Nf6 35. g4 fxg4 36. fxg4 h5 37. gxh5 gxh5 38. b8=Q Rxb8 39. Nd6 Nd5 40. Kg2 Kf6 41. Kf2 Kg5 42. Ke3 Nf4 43. Nc8 Rc8 44. Nb6 Rc2+ 45. Kd3 Nd5 46. Nc4 Rxc4 47. Kd4 Rc2 48. a5 Ne7 49. a6 Nc6+ 50. Kd5 Nb4+ 51. Kd6 Na6 52. a7 Rc6+ 53. Kd5 Rxa7 54. Kc5 Rxc4 55. d5+ Kf6 56. Kd4 Rc1 57. d6 Ke6 58. h6 Kd7 59. Ke5 Rc5+ 60. Kf4 Rh5 61. Kg3 Rh1 62. Kf2 Rh4 63. Kg3 Rh1 64. d7 Nd7 65. h7 Nb6 66. h8=Q Na8 67. Qg7+ 1-0

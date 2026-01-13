@@ -1,0 +1,22 @@
+{
+  "chesscom": {
+    "archives": {
+      "url": "https://api.chess.com/pub/player/testuser/games/archives",
+      "response": {
+        "archives": [
+          "https://api.chess.com/pub/player/testuser/games/2025/01"
+        ]
+      }
+    },
+    "pgn": {
+      "url": "https://api.chess.com/pub/player/testuser/games/2025/01/pgn",
+      "response": "[Event \"Test Game\"]\n[Site \"Chess.com\"]\n[Date \"2025.01.09\"]\n[White \"testuser\"]\n[Black \"opponent\"]\n[Result \"1-0\"]\n\n1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 1-0\n\n[Event \"Test Game 2\"]\n[Site \"Chess.com\"]\n[Date \"2025.01.09\"]\n[White \"opponent\"]\n[Black \"testuser\"]\n[Result \"0-1\"]\n\n1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 Be7 5. e3 O-O 6. Nf3 h6 7. Bh4 b6 8. cxd5 exd5 9. Bb2 c5 0-1"
+    }
+  },
+  "lichess": {
+    "games": {
+      "url": "https://lichess.org/api/games/user/testuser",
+      "response": "[Event \"Test Game\"]\n[Site \"lichess.org\"]\n[Date \"2025.01.09\"]\n[White \"testuser\"]\n[Black \"opponent\"]\n[Result \"1-0\"]\n\n1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 1-0\n\n[Event \"Test Game 2\"]\n[Site \"lichess.org\"]\n[Date \"2025.01.09\"]\n[White \"opponent\"]\n[Black \"testuser\"]\n[Result \"0-1\"]\n\n1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 Be7 5. e3 O-O 6. Nf3 h6 7. Bh4 b6 8. cxd5 exd5 9. Bb2 c5 0-1"
+    }
+  }
+}
