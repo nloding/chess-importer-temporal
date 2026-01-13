@@ -12,7 +12,9 @@ export class ChessComApiClient implements ApiClient {
   async fetchGames(username: string, startDate: Date, endDate: Date): Promise<string> {
     try {
       const archivesUrl = `${this.baseUrl}/${username}/games/archives`;
+      console.log(`download archives from ${archivesUrl}`);
       const archivesResponse = await this.httpGet(archivesUrl);
+      console.log('archives response', archivesResponse);
       const { archives } = JSON.parse(archivesResponse) as { archives: string[] };
 
       const filteredArchives = this.filterArchivesByDate(archives, startDate, endDate);
@@ -37,6 +39,7 @@ export class ChessComApiClient implements ApiClient {
       if (error instanceof FetchGamesError) {
         throw error;
       }
+      console.error(error);
       throw new FetchGamesError(username);
     }
   }

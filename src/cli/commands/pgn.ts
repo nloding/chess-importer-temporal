@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Game } from 'kokopu';
 import { DatabaseService } from '../../services/database.service';
 import { GameProcessorService } from '../../services/game-processor.service';
 import { PgnParserService } from '../../services/pgn-parser.service';
@@ -18,7 +17,7 @@ export async function handlePgnCommand(targetPath: string): Promise<void> {
   const gameProcessor = new GameProcessorService(db, pgnParser, stockfish);
 
   try {
-    const stats = await processPath(targetPath, gameProcessor);
+    const stats = await processPath(targetPath, gameProcessor, pgnParser);
 
     logger.info('\n--- Summary ---');
     logger.info(`Total games imported: ${stats.imported}`);
@@ -40,7 +39,8 @@ interface ImportStats {
 
 async function processPath(
   targetPath: string,
-  gameProcessor: GameProcessorService
+  gameProcessor: GameProcessorService,
+  pgnParser: PgnParserService
 ): Promise<ImportStats> {
   const stats: ImportStats = {
     imported: 0,
@@ -60,14 +60,14 @@ async function processPath(
   if (stat.isFile()) {
     if (resolvedPath.endsWith('.pgn')) {
       logger.info(`Processing file: ${resolvedPath}`);
-      await processPgnFile(resolvedPath, gameProcessor, stats);
+      await processPgnFile(resolvedPath, gameProcessor, stats, pgnParser);
     } else {
       logger.error(`File must be a .pgn file: ${resolvedPath}`);
       process.exit(1);
     }
   } else if (stat.isDirectory()) {
     logger.info(`Scanning directory: ${resolvedPath}`);
-    await processDirectory(resolvedPath, gameProcessor, stats);
+    await processDirectory(resolvedPath, gameProcessor, stats, pgnParser);
   } else {
     logger.error(`Path is neither a file nor directory: ${resolvedPath}`);
     process.exit(1);
@@ -79,7 +79,8 @@ async function processPath(
 async function processDirectory(
   dirPath: string,
   gameProcessor: GameProcessorService,
-  stats: ImportStats
+  stats: ImportStats,
+  pgnParser: PgnParserService
 ): Promise<void> {
   const files = fs.readdirSync(dirPath);
 
@@ -88,10 +89,10 @@ async function processDirectory(
     const stat = fs.statSync(filePath);
 
     if (stat.isDirectory()) {
-      await processDirectory(filePath, gameProcessor, stats);
+      await processDirectory(filePath, gameProcessor, stats, pgnParser);
     } else if (file.endsWith('.pgn')) {
       logger.info(`Processing file: ${filePath}`);
-      await processPgnFile(filePath, gameProcessor, stats);
+      await processPgnFile(filePath, gameProcessor, stats, pgnParser);
     }
   }
 }
@@ -99,11 +100,12 @@ async function processDirectory(
 async function processPgnFile(
   filePath: string,
   gameProcessor: GameProcessorService,
-  stats: ImportStats
+  stats: ImportStats,
+  pgnParser: PgnParserService
 ): Promise<void> {
   try {
     const pgnContent = fs.readFileSync(filePath, 'utf8');
-    const games = parsePgnGames(pgnContent);
+    const games = pgnParser.parsePgnGames(pgnContent);
 
     logger.info(`Found ${games.length} game(s) in file`);
 
@@ -126,14 +128,3 @@ async function processPgnFile(
   }
 }
 
-function parsePgnGames(pgnContent: string): Game[] {
-  const { pgnRead } = require('kokopu');
-  const database = pgnRead(pgnContent);
-
-  const games: Game[] = [];
-  for (let i = 0; i < database.gameCount(); i++) {
-    games.push(database.game(i));
-  }
-
-  return games;
-}

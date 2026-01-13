@@ -5,7 +5,6 @@ import { StockfishService } from '../../services/stockfish.service';
 import { LichessApiClient } from '../../services/api.service';
 import { logger } from '../../utils/logger.util';
 import { parseFlexibleDate, getDefaultStartDate, isValidDateRange } from '../../utils/date.util';
-import { Game } from 'kokopu';
 
 export async function handleLichessCommand(
   username: string,
@@ -41,7 +40,7 @@ export async function handleLichessCommand(
       return;
     }
 
-    const games = parsePgnGames(pgn);
+    const games = pgnParser.parsePgnGames(pgn);
     logger.info(`Found ${games.length} game(s) from Lichess`);
 
     let imported = 0;
@@ -74,14 +73,3 @@ export async function handleLichessCommand(
   }
 }
 
-function parsePgnGames(pgnContent: string): Game[] {
-  const { pgnRead } = require('kokopu');
-  const database = pgnRead(pgnContent);
-
-  const games: Game[] = [];
-  for (let i = 0; i < database.gameCount(); i++) {
-    games.push(database.game(i));
-  }
-
-  return games;
-}

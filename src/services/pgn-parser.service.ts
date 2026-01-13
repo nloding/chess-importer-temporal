@@ -36,6 +36,15 @@ export class PgnParserService {
   parsePgnFile(filePath: string): Game[] {
     try {
       const pgnContent = fs.readFileSync(filePath, 'utf8');
+      return this.parsePgnGames(pgnContent);
+    } catch (error) {
+      logger.error(`Failed to parse PGN file: ${filePath}`);
+      throw error;
+    }
+  }
+
+  parsePgnGames(pgnContent: string): Game[] {
+    try {
       const database = pgnRead(pgnContent);
       const games: Game[] = [];
 
@@ -45,7 +54,7 @@ export class PgnParserService {
 
       return games;
     } catch (error) {
-      logger.error(`Failed to parse PGN file: ${filePath}`);
+      logger.error('Failed to parse PGN content');
       throw error;
     }
   }
