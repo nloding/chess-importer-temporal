@@ -4,6 +4,8 @@ import { Command } from 'commander';
 import { handlePgnCommand } from './commands/pgn';
 import { handleChesscomCommand } from './commands/chesscom';
 import { handleLichessCommand } from './commands/lichess';
+import { handleStatusCommand } from './commands/status';
+import { handleCancelCommand } from './commands/cancel';
 import { logger } from '../utils/logger.util';
 
 const program = new Command();
@@ -47,6 +49,30 @@ program
       await handleLichessCommand(username, startDate, endDate);
     } catch (error) {
       logger.error(`Failed to fetch Lichess games: ${error}`);
+      process.exit(1);
+    }
+  });
+
+program
+  .command('status <workflow-id>')
+  .description('Check workflow status')
+  .action(async (workflowId: string) => {
+    try {
+      await handleStatusCommand(workflowId);
+    } catch (error) {
+      logger.error(`Failed to get workflow status: ${error}`);
+      process.exit(1);
+    }
+  });
+
+program
+  .command('cancel <workflow-id>')
+  .description('Cancel a running workflow')
+  .action(async (workflowId: string) => {
+    try {
+      await handleCancelCommand(workflowId);
+    } catch (error) {
+      logger.error(`Failed to cancel workflow: ${error}`);
       process.exit(1);
     }
   });

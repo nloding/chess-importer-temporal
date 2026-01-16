@@ -1,0 +1,6 @@
+{
+  "watch": ["src/workflows", "src/activities", "src/worker"],
+  "ext": "ts",
+  "ignore": ["tests/**/*.ts", "dist/**/*", "src/cli/**/*"],
+  "exec": "NODE_OPTIONS=\"-r ts-node/register --no-warnings\" node src/worker/index.ts"
+}

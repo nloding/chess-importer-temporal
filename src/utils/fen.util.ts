@@ -15,3 +15,4 @@ export class FenUtil {
     return rows.map((row) => row.replace(/\d/g, (match) => ' '.repeat(parseInt(match, 10))));
   }
 }
+

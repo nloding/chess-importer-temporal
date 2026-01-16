@@ -11,6 +11,10 @@
   },
   "scripts": {
     "dev": "nodemon",
+    "worker": "nodemon --config nodemon.worker.json",
+    "worker:debug": "nodemon --config nodemon.worker.json --inspect-brk",
+    "cli": "NODE_OPTIONS=\"-r ts-node/register\" node src/cli/index.ts",
+    "cli:debug": "NODE_OPTIONS=\"-r ts-node/register --inspect-brk\" node src/cli/index.ts",
     "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -19,11 +23,16 @@
     "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\""
   },
   "dependencies": {
+    "@temporalio/activity": "^1.11.2",
+    "@temporalio/client": "^1.11.2",
+    "@temporalio/worker": "^1.11.2",
+    "@temporalio/workflow": "^1.11.2",
     "better-sqlite3": "^11.7.0",
     "chalk": "^4.1.2",
     "commander": "^12.1.0",
     "date-fns": "^2.30.0",
     "kokopu": "^4.13.1",
+    "nanoid": "^5.0.0",
     "stockfish": "^17.1.0"
   },
   "devDependencies": {
